@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="300sp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:background="@drawable/login_edit_text"
+        tools:context=".Fragments.NewUserFragment">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/new_work_station"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="320sp"
+                android:visibility="visible">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                <EditText
+                        android:id="@+id/new_ws_name_editText"
+                        style="@style/BGTransparentEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/login_edit_text"
+                        android:drawableStart="@drawable/ws_pin"
+                        android:drawableLeft="@drawable/ws_pin"
+                        android:fontFamily="@font/quicksandsemibold"
+                        android:hint="@string/name"
+                        android:inputType="textEmailAddress"
+                        android:nextFocusForward="@+id/new_ws_open_hour_editText"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                <EditText
+                        android:id="@+id/new_ws_email_editText"
+                        style="@style/BGTransparentEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/login_edit_text"
+                        android:drawableStart="@drawable/email"
+                        android:drawableLeft="@drawable/email"
+                        android:drawableTint="@color/colorAccent"
+                        android:fontFamily="@font/quicksandsemibold"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:nextFocusForward="@+id/new_ws_open_hour_editText"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                <EditText
+                        android:id="@+id/new_ws_phone_editText"
+                        style="@style/BGTransparentEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/login_edit_text"
+                        android:drawableStart="@drawable/phone_talking"
+                        android:drawableLeft="@drawable/phone_talking"
+                        android:drawableTint="@color/colorAccent"
+                        android:fontFamily="@font/quicksandsemibold"
+                        android:hint="@string/phone"
+                        android:inputType="textEmailAddress"
+                        android:nextFocusForward="@+id/new_ws_open_hour_editText"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13sp"
+                        android:background="@drawable/login_edit_text"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10sp"
+                            android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/wifi"
+                            tools:visibility="visible" />
+
+                    <SeekBar
+                            android:id="@+id/wifi_seekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:max="3" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13sp"
+                        android:background="@drawable/login_edit_text"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:layout_width="21dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10sp"
+                            android:layout_marginRight="3sp"
+                            android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/hearing_sound"
+                            tools:visibility="visible" />
+
+                    <SeekBar
+                            android:id="@+id/sound_seekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:max="3" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="13sp"
+                        android:layout_marginRight="13sp"
+                        android:layout_marginBottom="13sp"
+                        android:background="@drawable/login_edit_text"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10sp"
+                            android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/energy_power"
+                            tools:visibility="visible" />
+
+                    <SeekBar
+                            android:id="@+id/energy_seekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:max="1" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawablePadding="8dp"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/new_ws_open_hour_editText"
+                            style="@style/BGTransparentEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13sp"
+                            android:layout_weight="0.4"
+                            android:background="@drawable/login_edit_text"
+                            android:digits="0123456789:"
+                            android:drawableStart="@drawable/clock"
+                            android:drawableLeft="@drawable/clock"
+                            android:drawablePadding="8dp"
+                            android:fontFamily="@font/quicksandsemibold"
+                            android:hint="@string/ws_open_hour"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/new_ws_close_hour_editText"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="16sp" />
+
+                    <Space
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content" />
+
+                    <EditText
+                            android:id="@+id/new_ws_close_hour_editText"
+                            style="@style/BGTransparentEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="13sp"
+                            android:layout_weight="0.4"
+                            android:background="@drawable/login_edit_text"
+                            android:digits="0123456789:"
+                            android:drawableStart="@drawable/clock"
+                            android:drawableLeft="@drawable/clock"
+                            android:drawablePadding="8dp"
+                            android:hint="@string/ws_close_hour"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/new_ws_enter_button"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+                android:id="@+id/new_ws_enter_button"
+                style="@style/NewUserButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/login_no_border_button"
+                android:fontFamily="@font/quicksandsemibold"
+                android:text="@string/suggest_ws"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        <Button
+                android:id="@+id/new_ws_back"
+                style="@style/NewUserButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/quicksandsemibold"
+                android:text="@string/cancel"
+                android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+</FrameLayout>

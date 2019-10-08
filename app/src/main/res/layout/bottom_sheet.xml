@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/bottom_sheet"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:paddingBottom="10dp"
+              app:behavior_hideable="true"
+              app:behavior_peekHeight="60dp"
+              app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:background="@color/colorAccent">
+
+        <View
+                android:layout_width="25sp"
+                android:layout_height="3dp"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/spaceHeader"
+                android:background="@color/light_gray"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:id="@+id/wsDetailsName"
+                android:text="@string/work_station"
+                android:textColor="@color/light_gray"
+                android:textSize="22sp"
+                android:layout_marginLeft="5sp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5sp"
+                android:layout_marginLeft="5sp">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    app:srcCompat="@android:drawable/ic_menu_recent_history"
+                    android:layout_gravity="center"
+                    android:tint="@color/colorPrimary"/>
+
+            <TextView
+                    android:id="@+id/wsDetailsSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_ws"
+                    android:textColor="@color/light_gray"
+                    android:textSize="16sp"
+                    android:textAllCaps="true" android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginLeft="7sp"
+                    android:foregroundGravity="top|center"
+                    android:gravity="top"
+                    android:text="@string/address_ws"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+            <TextView
+                    android:id="@+id/wsDetailsAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="15sp"
+                    android:text="@string/address_ws_null"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/space1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/layoutBottomSheet1"
+                android:background="@color/colorPrimary" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space1"
+                android:layout_marginTop="5sp"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/wifi" />
+
+            <TextView
+                    android:id="@+id/wsDetailsWifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/wifi_ws_details"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/wsDetailsWifiDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/not_inform"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <Space
+                android:id="@+id/space2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBottomSheet3"
+                android:layout_marginTop="5sp" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space2"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/hearing_sound" />
+
+            <TextView
+                    android:id="@+id/wsDetailsSound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/sound_ws_details"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/wsDetailsSoundDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/not_inform"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <Space
+                android:id="@+id/space3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBottomSheet4"
+                android:layout_marginTop="5sp" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space3"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/energy_power" />
+
+            <TextView
+                    android:id="@+id/wsDetailsEnergy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/energy_ws_details"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/wsDetailsEnergyDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/not_inform"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <Space
+                android:id="@+id/space4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBottomSheet5"
+                android:layout_marginTop="5sp" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space4"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/email" />
+
+            <TextView
+                    android:id="@+id/wsDetailsEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/email_ws_details"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/wsDetailsEmailDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/not_inform"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <Space
+                android:id="@+id/space5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBottomSheet6"
+                android:layout_marginTop="5sp" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space5"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/phone_talking" />
+
+            <TextView
+                    android:id="@+id/wsDetailsPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/phone_ws_details"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/wsDetailsPhoneDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/not_inform"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/space6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/layoutBottomSheet7"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary" />
+
+        <LinearLayout
+                android:id="@+id/layoutBottomSheet10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space6"
+                android:layout_marginTop="10sp"
+                android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="15sp"
+                    android:layout_marginTop="5sp"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

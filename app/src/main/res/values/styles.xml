@@ -1,0 +1,105 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+    <style name="LoginTheme" parent="AppTheme">
+    </style>
+
+
+    <!-- Custom Button -->
+    <style name="LoginButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/login_no_border_button</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <!--<item name="android:paddingStart">30dp</item>-->
+        <item name="android:paddingLeft">30dp</item>
+        <!--<item name="android:paddingEnd">30dp</item>-->
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:minHeight">28dp</item>
+    </style>
+
+    <style name="LoginNextButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/login_no_border_button</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <!--<item name="android:paddingStart">30dp</item>-->
+        <item name="android:paddingLeft">30dp</item>
+        <!--<item name="android:paddingEnd">30dp</item>-->
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:minHeight">45dp</item>
+    </style>
+
+    <style name="BGTransparentLoginEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_height">160sp</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="BGTransparentSearch" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_height">160sp</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="searchHintIcon">@null</item>
+    </style>
+
+    <style name="NewUserButton" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:background">@drawable/login_border_button</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <!--<item name="android:paddingStart">30dp</item>-->
+        <item name="android:paddingLeft">30dp</item>
+        <!--<item name="android:paddingEnd">30dp</item>-->
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:minHeight">45dp</item>
+    </style>
+
+    <style name="BGTransparentEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_height">160sp</item>
+        <item name="android:minHeight">45dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/dark_gray</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="DatePickerStyle" parent="@android:style/Widget.Material.DatePicker" tools:ignore="NewApi">
+        <item name="android:colorControlActivated">#ffea00</item>
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:background">@color/white</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="android:strokeColor">@color/colorAccent</item>
+    </style>
+
+    <style name="DatePickerSpinnerStyle" parent="@android:style/Widget.Material.DatePicker" tools:ignore="NewApi">
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:background">@color/white</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
+
+</resources>

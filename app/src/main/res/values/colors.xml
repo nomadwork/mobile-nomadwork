@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#064789</color>
+    <color name="colorBase">#F3F3F3</color>
+    <color name="colorAccent">#03a9f4</color>
+
+
+
+
+
+    <color name="colorPrimaryDark">@color/charcoal</color>
+
+    <color name="slate_green">#597365</color>
+    <color name="charcoal">#34423b</color>
+    <color name="transparent_charcoal">#B334423B</color>
+    <color name="light_green">#3cb776</color>
+    <color name="green">#3e9c6b</color>
+    <color name="light_transparent_white">#CCFFFFFF</color>
+    <color name="yellow">#00FAF9F9</color>
+    <color name="transparent">#00FAF9F9</color>
+
+    <color name="yellow_rate">#856404</color>
+    <color name="yellow_bg_rate">#fff3cd</color>
+
+
+    <color name="medium_gray">#858d89</color>
+    <color name="light_gray">#e6e6e6</color>
+    <color name="gray">#97a29c</color>
+    <color name="dark_gray">#6e6e6e</color>
+    <color name="black">#000000</color>
+    <color name="transparent_black">#B3000000</color>
+    <color name="light_red">#f26c6c</color>
+    <color name="red">#df3b3b</color>
+    <color name="dark_red">#d62c2c</color>
+
+    <color name="red_rate">#f8d7da</color>
+    <color name="red_bg_rate">#721c24</color>
+
+    <color name="gray_2">#f2f2f2</color>
+    <color name="white">#FFFFFF</color>
+</resources>

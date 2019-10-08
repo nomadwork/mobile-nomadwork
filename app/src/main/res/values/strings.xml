@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">NomadWork</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="enter">Entrar</string>
+    <string name="user">Digite seu E-mail</string>
+    <string name="email">E-mail</string>
+    <string name="password">Digite sua Senha</string>
+    <string name="phone">Telefone</string>
+    <string name="next">Próximo passo</string>
+    <string name="forget_password">Esqueceu a senha? %s</string>
+    <string name="forget_password_click" color="#000000">Clique aqui!</string>
+    <string name="wrong_username_or_password">Usuário ou senha incorretos</string>
+    <string name="wrong_name">Nome Inválido</string>
+    <string name="worng_last_name">Sobrenome Inválido</string>
+    <string name="wrong_email_format">Email Inválido</string>
+    <string name="new_user">Criar Conta</string>
+    <string name="register_user">Cadastre-se</string>
+    <string name="suggest_ws">Sugerir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="name">Nome</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="password_confirm">Confirmar Senha</string>
+    <string name="back">Voltar</string>
+    <string name="field_invalid">Campo Inválido</string>
+
+    <string name="login_error_contact_admin">Entre em contato com o suporte</string>
+
+    <string name="app_version">Versão</string>
+
+    <string name="work_station">WorkStation</string>
+    <string name="nomad_work_station">Nomad Work Station</string>
+    <string name="new_work_station">Cadastro WorkStation</string>
+    <string name="schedule_ws">Horário:</string>
+    <string name="address_ws">Endereço:</string>
+    <string name="address_ws_null">Não informado!</string>
+    <string name="wifi_ws_details">Internet:</string>
+    <string name="sound_ws_details">Ruído:</string>
+    <string name="energy_ws_details">Tomada:</string>
+    <string name="email_ws_details">Email:</string>
+    <string name="phone_ws_details">Telefone:</string>
+
+    <string name="ws_open_hour">Abre</string>
+    <string name="ws_close_hour">Fecha</string>
+
+    <string name="no_internet_ws_register">Não há</string>
+    <string name="bad_internet_ws_register">Baixa</string>
+    <string name="regular_internet_ws_register">Médio</string>
+    <string name="good_internet_ws_register">Alta</string>
+
+    <string name="new_user_male">Masc.</string>
+    <string name="new_user_female">Fem.</string>
+    <string name="new_user_not_inform">Não Inf.</string>
+    <string name="not_inform">Não Informado</string>
+
+    <string name="no_sound_ws_register">Não há</string>
+    <string name="bad_sound_ws_register">Baixo</string>
+    <string name="regular_sound_ws_register">Médio</string>
+    <string name="good_sound_ws_register">Alto</string>
+
+    <string name="no_energy_ws_register">Não há</string>
+    <string name="has_energy_ws_register">Possui</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

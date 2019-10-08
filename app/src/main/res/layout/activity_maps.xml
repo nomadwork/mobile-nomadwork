@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".Activity.MapsActivity"
+          android:name="com.google.android.gms.maps.SupportMapFragment">
+
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map"
+            tools:context=".Activity.MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:id="@+id/menuButtom"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_marginLeft="23sp"
+                android:layout_marginTop="24sp"
+                android:background="@drawable/menu_bottom" />
+
+        <android.widget.SearchView
+                android:id="@+id/simpleSearchView"
+                style="@style/BGTransparentSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginRight="15sp"
+                android:background="@drawable/search_edit_text"
+                android:iconifiedByDefault="false"
+                android:paddingLeft="40sp"
+                android:queryHint="@string/nomad_work_station"
+                android:searchIcon="@null" />
+
+
+        <FrameLayout
+                android:id="@+id/fragments_holder_maps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:foregroundGravity="center_horizontal" >
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_ws_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="75sp"
+            android:layout_marginEnd="11sp"
+            android:layout_marginRight="15sp"
+            android:clickable="true"
+            android:tint="@color/white"
+            app:backgroundTint="@color/colorAccent"
+            app:borderWidth="0.5dp"
+            app:elevation="3dp"
+            app:fabSize="mini"
+            app:hoveredFocusedTranslationZ="3dp"
+            app:maxImageSize="25sp"
+            app:pressedTranslationZ="3dp"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+        <!-- Adding bottom sheet after main content -->
+    <include layout="@layout/bottom_sheet"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
