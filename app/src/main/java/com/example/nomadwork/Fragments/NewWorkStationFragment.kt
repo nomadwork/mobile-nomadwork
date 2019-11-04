@@ -13,6 +13,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.nomadwork.API.NomadWorkAPIService
+import com.example.nomadwork.API.Session
 import com.example.nomadwork.API.request.RegisterRequest
 import com.example.nomadwork.API.request.WSSuggestRequest
 import com.example.nomadwork.Activity.LoginActivity
@@ -84,6 +85,11 @@ class NewWorkStationFragment : Fragment() {
         val subscription = r.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ result ->
+                // Invalid access_token. Force logout and login
+                val s = Session.get(null)
+                if (result.code == 401 && s != null) {
+                    (activity as MapsActivity).logout()
+                }
                 if (result.message != ""){
                     Toast.makeText(activity!!.applicationContext, result.message, Toast.LENGTH_SHORT).show()
                     closeFragment()
