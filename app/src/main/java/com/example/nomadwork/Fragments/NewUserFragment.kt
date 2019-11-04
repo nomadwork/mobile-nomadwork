@@ -24,12 +24,14 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.nomadwork.API.NomadWorkAPIService
+import com.example.nomadwork.API.Session
 import com.example.nomadwork.API.request.EmailRequest
 import com.example.nomadwork.API.request.LoginRequest
 import com.example.nomadwork.API.request.RegisterRequest
 import com.example.nomadwork.Activity.LoginActivity
 import com.example.nomadwork.Activity.MapsActivity
 import com.example.nomadwork.Helpers.AndroidDisposable
+import com.example.nomadwork.Helpers.PreferencesManager
 
 import com.example.nomadwork.R
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -117,7 +119,9 @@ class NewUserFragment : Fragment() {
         val subscription = r.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ result ->
-                if (result.code() == 200){
+                if (result.code == 200){
+                    Session(result.result.token.getToken).save((activity as LoginActivity).applicationContext)
+                    PreferencesManager.initUserPreferences(result.result.user)
                     val i = Intent((activity as LoginActivity).applicationContext, MapsActivity::class.java)
                     startActivity(i)
                     (activity as LoginActivity).finish()
