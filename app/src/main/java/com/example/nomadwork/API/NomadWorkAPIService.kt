@@ -1,13 +1,10 @@
 package com.example.nomadwork.API
 
-import android.app.Activity
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import com.example.nomadwork.API.Models.BaseResponse
 import com.example.nomadwork.API.request.*
-import com.example.nomadwork.API.response.BaseResponseWorkStationDetails
+import com.example.nomadwork.API.response.LoginResponse
 import com.example.nomadwork.API.response.WSSuggestResponse
 import com.example.nomadwork.Activity.LoginActivity
 import com.example.nomadwork.BuildConfig
@@ -110,6 +107,11 @@ class NomadWorkAPIService private constructor() {
             request.addHeader("android_version", Build.VERSION.RELEASE)
             request.addHeader("Access-Control-Allow-Origin", "*")
 
+            val s = Session.get(null)
+            if (s != null) {
+                request.addHeader("authorization", s.token)
+            }
+
             val response = chain.proceed(request.build())
 
             return response
@@ -123,6 +125,7 @@ class NomadWorkAPIService private constructor() {
     val workStationsList = retrofit.create(WorkStationList::class.java)
     val workStatinDetails = retrofit.create(WorkStationDetails::class.java)
     val workStationSuggest = retrofit.create(WorkStationSuggest::class.java)
+    val workStationSeacrhList = retrofit.create(WorkStationSearchList::class.java)
     val enumServices = retrofit.create(EnumServices::class.java)
 
 }
@@ -135,13 +138,13 @@ interface VerifyUserEmailService {
 }
 
 interface UserLogin {
-    @POST("api/token")
-    fun login(@Body loginRequest: LoginRequest): Single<retrofit2.Response<Void>>
+    @POST("api/user/login")
+    fun login(@Body loginRequest: LoginRequest): Single<BaseResponse<LoginResponse>>
 }
 
 interface RegisterNewUser {
     @POST ("api/register/")
-    fun registerUser (@Body registerRequest: RegisterRequest): Single<retrofit2.Response<Void>>
+    fun registerUser (@Body registerRequest: RegisterRequest): Single<BaseResponse<LoginResponse>>
 }
 
 interface WorkStationList {
@@ -157,6 +160,11 @@ interface WorkStationDetails {
 interface WorkStationSuggest {
     @POST ("api/establishmment")
     fun workStationSuggest(@Body wsSuggestRequest: WSSuggestRequest): Single<BaseResponse<WSSuggestResponse>>
+}
+
+interface WorkStationSearchList {
+    @GET("api/establishmment/{term}")
+    fun workStationSearchList(@Path("term") term: String): Single<BaseResponse<List<WorkStation>>>
 }
 
 interface EnumServices {
