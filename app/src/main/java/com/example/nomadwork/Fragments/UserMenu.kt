@@ -32,6 +32,9 @@ class UserMenu : Fragment() {
     @BindView (R.id.user_menu_gender) lateinit var userGender: TextView
     @BindView (R.id.user_menu_age) lateinit var userAge: TextView
 
+    private val mascID = 0
+    private val femID = 1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +76,11 @@ class UserMenu : Fragment() {
         if(PreferencesManager.checkInitialized()){
             userName.text = PreferencesManager.user.getName
             userEmail.text = PreferencesManager.user.getEmail
-            userGender.text = PreferencesManager.user.getGender
+            userGender.text = when (PreferencesManager.user.getGender) {
+                mascID.toString() -> getString(R.string.new_user_male)
+                femID.toString() -> getString(R.string.new_user_female)
+                else -> getString(R.string.new_user_not_inform)
+            }
             userAge.text = PreferencesManager.user.getAge
         }
     }
