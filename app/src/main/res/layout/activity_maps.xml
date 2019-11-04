@@ -40,6 +40,25 @@
                 android:queryHint="@string/nomad_work_station"
                 android:searchIcon="@null" />
 
+        <LinearLayout
+                android:id="@+id/ws_filter_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/simpleSearchView"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:background="#00000000"
+                android:visibility="gone">
+
+            <ListView
+                    android:id="@+id/ws_list_view"
+                    style="@style/BGTransparentSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@+id/simpleSearchView"
+                    android:background="@drawable/search_edit_text" />
+        </LinearLayout>
+
 
         <FrameLayout
                 android:id="@+id/fragments_holder_maps"
