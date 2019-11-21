@@ -22,6 +22,7 @@
     <string name="password_confirm">Confirmar Senha</string>
     <string name="back">Voltar</string>
     <string name="field_invalid">Campo Inválido</string>
+    <string name="ws_not_found">Não encontramos WS com o nome informado!</string>
 
     <string name="login_error_contact_admin">Entre em contato com o suporte</string>
 
@@ -51,6 +52,11 @@
     <string name="new_user_female">Fem.</string>
     <string name="new_user_not_inform">Não Inf.</string>
     <string name="not_inform">Não Informado</string>
+
+    <string name="user_gender_masc">Sexo: Masculino</string>
+    <string name="user_gender_fem">Sexo: Feminino.</string>
+    <string name="user_gender_not_inform">Sexo: Não Informado.</string>
+    <string name="user_age">Idade: %s anos</string>
 
     <string name="no_sound_ws_register">Não há</string>
     <string name="bad_sound_ws_register">Baixo</string>
