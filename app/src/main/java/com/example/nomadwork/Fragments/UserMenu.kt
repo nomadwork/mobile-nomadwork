@@ -3,7 +3,6 @@ package com.example.nomadwork.Fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,15 +14,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.nomadwork.Activity.MapsActivity
+import com.example.nomadwork.Helpers.Constants
 import com.example.nomadwork.Helpers.PreferencesManager
-
 import com.example.nomadwork.R
+import java.util.*
+
 class UserMenu : Fragment() {
 
     @BindView (R.id.user_menu_photo) lateinit var userPhoto: ImageView
@@ -69,6 +69,10 @@ class UserMenu : Fragment() {
             }
         }
 
+        PreferencesManager.getPreferenceString((activity as MapsActivity).applicationContext, Constants.USER_PHOTO)?.let {
+            userPhoto.setImageURI(Uri.parse(it))
+        }
+
         return v
     }
 
@@ -77,11 +81,17 @@ class UserMenu : Fragment() {
             userName.text = PreferencesManager.user.getName
             userEmail.text = PreferencesManager.user.getEmail
             userGender.text = when (PreferencesManager.user.getGender) {
-                mascID.toString() -> getString(R.string.new_user_male)
-                femID.toString() -> getString(R.string.new_user_female)
-                else -> getString(R.string.new_user_not_inform)
+                mascID.toString() -> getString(R.string.user_gender_masc)
+                femID.toString() -> getString(R.string.user_gender_fem)
+                else -> getString(R.string.user_gender_not_inform)
             }
-            userAge.text = PreferencesManager.user.getAge
+
+            val dateString = PreferencesManager.user.getAge.indexOf('T').let { if (it == -1) null
+            else PreferencesManager.user.getAge.substring(0, it) }
+
+            if (dateString != null) {
+                userAge.text = getString(R.string.user_age, calculateAge(dateString).toString())
+            }
         }
     }
 
@@ -130,8 +140,9 @@ class UserMenu : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             if(data!!.data != null){
+                PreferencesManager.setPreference((activity as MapsActivity).applicationContext, Constants.USER_PHOTO, data.data.toString() )
                 PreferencesManager.setUserPhotoPreferences(data.data!!)
-                userPhoto.setImageURI(PreferencesManager.userPhoto)
+                userPhoto.setImageURI(Uri.parse(PreferencesManager.getPreferenceString((activity as MapsActivity).applicationContext, Constants.USER_PHOTO)))
             }
         }
     }
@@ -141,6 +152,31 @@ class UserMenu : Fragment() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    private fun calculateAge(dateBorn: String): Int? {
+        val year = dateBorn.indexOf('-').let { if (it == -1) null
+        else dateBorn.substring(0, it) }
+
+        val month = dateBorn.indexOf("-").let { if (it == -1) null
+        else dateBorn.substring(5, 7) }
+
+        val day = dateBorn.indexOf("$month-").let { if (it == -1) null
+        else dateBorn.substring(8, 10) }
+
+        var age: Int
+
+        val calendar = Calendar.getInstance()
+
+        age = calendar.get(Calendar.YEAR) - year!!.toInt()
+
+        if(month!!.toInt() - Calendar.getInstance().get(Calendar.MONTH) >= 0){
+            if(day!!.toInt() - Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 0){
+                age++
+            }
+        }
+
+        return age
     }
 
     companion object {
