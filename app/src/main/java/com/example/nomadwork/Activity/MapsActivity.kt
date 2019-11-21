@@ -123,9 +123,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onResume()
         if (checkPermissionForLocation(this)) {
             startLocationUpdates()
-            System.out.println(LocationHelper.getUserLocation()?.latitude) //TODO: remove this line!
-            System.out.println("INICIOU O SERVICO!!!!") //TODO: remove this line!
-            //testMarkers()
         }
     }
 
@@ -236,13 +233,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
         })
-
-        /*btBottomSheetDialog.setOnClickListener(View.OnClickListener {
-            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
-            val dialog = BottomSheetDialog(this)
-            dialog.setContentView(view)
-            dialog.show()
-        })*/
     }
 
     private fun bottomSheetClickListener() {
@@ -319,10 +309,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     })
                 disposable.add(subscription)
 
-                /*val location = LatLng(mark.workStationLocation.lat, mark.workStationLocation.long)
-
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16.0f))*/
-
                 return@OnMarkerClickListener true
             }
             return@OnMarkerClickListener false
@@ -347,15 +333,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
 
-        //TODO: verificar forma de marcar WS atraves da visao do mapa.
         mMap.setOnCameraMoveStartedListener {
 
             if(LocationHelper.distanceCurrentLocationAndNewLocation(LocationHelper.getUserLocation()!!.latitude,
                     LocationHelper.getUserLocation()!!.longitude, mMap.projection.fromScreenLocation(Point()).latitude,
                     mMap.projection.fromScreenLocation(Point()).longitude) > distanceToNewMarkers) {
 
-                //val myLocation = LatLng(LocationHelper.getUserLocation()!!.latitude, LocationHelper.getUserLocation()!!.longitude)
-                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 16.0f))
                 if(WorkStationHelper.checkInitialized()) {
                     getMarkersByLocation(
                         mMap.projection.fromScreenLocation(Point()).latitude,
@@ -372,30 +355,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Log.i(TAG, "New Markers")
             }
         }
-
-
-        /*testMarkers{
-            if(WorkStationHelper.checkInitialized()){
-                for(wsStation in WorkStationHelper.getAllws()){
-                    val position = LatLng(wsStation.wsLocation.wsLat, wsStation.wsLocation.wsLong)
-                    mMap.addMarker(MarkerOptions().position(position).title(wsStation.wsName))
-                }
-            }
-        }*/
-
-
-        //Add a marker in Sydney and move the camera
-        //       val sydney = LatLng(-34.0, 151.0)
-        //       mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        //       mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f))
-
-        /*mMap.addMarker(
-                    MarkerOptions().position(sydney).title("Marker in Sydney").icon(
-                        BitmapDescriptorFactory.defaultMarker(
-                            BitmapDescriptorFactory.HUE_AZURE
-                        )
-                    )
-                )*/
     }
 
     private fun initLocation() {
@@ -469,8 +428,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     LocationHelper.updateLocation(location)
 
-                    //val myLocation = LatLng(LocationHelper.getUserLocation()!!.latitude, LocationHelper.getUserLocation()!!.longitude)
-                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 16.0f))
                     getMarkersByLocation(LocationHelper.getUserLocation()!!.latitude, LocationHelper.getUserLocation()!!.longitude) {
                         addMarkersByLocation()
                     }
