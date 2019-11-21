@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Point
 import android.location.Location
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -64,6 +65,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var viewpager: ViewPager
 
+    private var workStationLatSelected: Double? = null
+    private var workStationLongSelected: Double? = null
+
+
     companion object {
         const val TAG = "MapsActivity"
     }
@@ -84,7 +89,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         searchEdit.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
-                if (searchEdit.query.toString() == "") toggleFilterWS(wsFilter)
+                //if (searchEdit.query.toString() == "") toggleFilterWS(wsFilter)
                 return false
             }
 
@@ -299,6 +304,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                             logout()
                         }
                         showWSDetails(result.result)
+                        workStationLatSelected = mark.workStationLocation.wsLat
+                        workStationLongSelected = mark.workStationLocation.wsLong
                     }, { error ->
                         if (error is HttpException) {
                             Toast.makeText(this, error.message!!, Toast.LENGTH_SHORT).show()
@@ -573,6 +580,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         expandCloseSheet()
     }
 
+    @OnClick(R.id.wsDetailsAddress)
+    fun openGoogleMaps(){
+        Log.i("LOG", "$workStationLatSelected, $workStationLongSelected")
+
+        val gmmIntentUri = Uri.parse("http://maps.google.com/maps?q=loc:$workStationLatSelected,$workStationLongSelected")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
+    }
+
     private fun toggleFilterWS(layout: View) {
         val isOpen = layout.visibility == View.VISIBLE
 
@@ -598,7 +616,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         wsList.setOnItemClickListener { parent, _, position, _ ->
             val mark = list[position]
 
-            val wsLocation = LatLng(list[position].workStationLocation.lat, list[position].workStationLocation.long)
+            val wsLocation = LatLng(list[position].workStationLocation.wsLat, list[position].workStationLocation.wsLong)
 
             val api = NomadWorkAPIService.api()
             val r = api.workStatinDetails.workStationDetails(mark.workStationId)
@@ -617,6 +635,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         BitmapDescriptorFactory.fromResource(R.drawable.ws_pin))).showInfoWindow()
                     showWSDetails(result.result)
                     toggleFilterWS(wsFilter)
+                    searchEdit.setQuery("", false)
                 }, { error ->
                     if (error is HttpException) {
                         Toast.makeText(this, error.message!!, Toast.LENGTH_SHORT).show()
