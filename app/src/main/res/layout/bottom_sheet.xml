@@ -97,7 +97,8 @@
                     android:text="@string/address_ws_null"
                     android:textAllCaps="true"
                     android:textColor="@color/light_gray"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
 
 
         </LinearLayout>
