@@ -10,7 +10,7 @@
             android:id="@+id/menu_base_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
+            android:background="@drawable/login_edit_text"
             android:clickable="true"
             android:orientation="vertical">
 
@@ -21,66 +21,77 @@
 
             <ImageView
                     android:id="@+id/user_menu_photo"
-                    android:layout_width="120dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
                     android:src="@drawable/usuario" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:orientation="vertical">
-
-                <Button
-                        android:id="@+id/back_menu_button"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="end"
-                        android:background="@drawable/ic_arrow_back"
-                        android:backgroundTint="@color/colorAccent"
-                        android:rotation="90" />
-
-                <TextView
-                        android:id="@+id/user_menu_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/quicksandsemibold"
-                        android:text="Name"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="16sp" />
-
-                <TextView
-                        android:id="@+id/user_menu_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/quicksandsemibold"
-                        android:text="Email"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="16sp" />
-
-                <TextView
-                        android:id="@+id/user_menu_gender"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/quicksandsemibold"
-                        android:text="Gender"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="16sp" />
-
-                <TextView
-                        android:id="@+id/user_menu_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/quicksandsemibold"
-                        android:text="Age"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="16sp" />
-            </LinearLayout>
+            <Button
+                    android:id="@+id/back_menu_button"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="155dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/ic_arrow_back"
+                    android:backgroundTint="@color/colorAccent"
+                    android:rotation="90" />
         </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/user_menu_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/quicksandsemibold"
+                    android:text="Name"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/user_menu_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/quicksandsemibold"
+                    android:text="Email"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/user_menu_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/quicksandsemibold"
+                    android:text="Gender"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/user_menu_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/quicksandsemibold"
+                    android:text="Age"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent" />
 
         <TextView
                 android:id="@+id/user_menu_edit"
@@ -88,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/quicksandsemibold"
                 android:text="Editar Dados"
                 android:textColor="@color/dark_gray"
                 android:textSize="24sp" />
