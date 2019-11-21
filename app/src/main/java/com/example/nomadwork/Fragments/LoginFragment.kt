@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Base64
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +28,7 @@ import com.example.nomadwork.Activity.LoginActivity
 import com.example.nomadwork.Activity.LoginStep
 import com.example.nomadwork.Activity.MapsActivity
 import com.example.nomadwork.Helpers.AndroidDisposable
+import com.example.nomadwork.Helpers.Constants
 import com.example.nomadwork.Helpers.PreferencesManager
 import com.example.nomadwork.Helpers.SoftInput
 
@@ -57,7 +57,9 @@ class LoginFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_login, container, false)
         ButterKnife.bind(this, v)
 
-        userEditText.setText("nomadwork@gmail.com")
+        PreferencesManager.getPreferenceString((activity as LoginActivity).applicationContext, Constants.USER_EMAIL)?.let {
+            userEditText.setText(it.replace("\"", ""))
+        }
 
         forgetPasswordText.text = getString(R.string.forget_password, getString(R.string.forget_password_click))
 
@@ -170,6 +172,7 @@ class LoginFragment : Fragment() {
                 if (result.code == 200){
                     Session(result.result.token.getToken).save((activity as LoginActivity).applicationContext)
                     PreferencesManager.initUserPreferences(result.result.user)
+                    PreferencesManager.setPreference((activity as LoginActivity).applicationContext, Constants.USER_EMAIL, email)
                     val i = Intent((activity as LoginActivity).applicationContext, MapsActivity::class.java)
                     startActivity(i)
                     (activity as LoginActivity).finish()
