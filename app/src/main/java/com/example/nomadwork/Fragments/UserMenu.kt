@@ -70,7 +70,7 @@ class UserMenu : Fragment() {
         }
 
         PreferencesManager.getPreferenceString((activity as MapsActivity).applicationContext, Constants.USER_PHOTO)?.let {
-            userPhoto.setImageURI(Uri.parse(it))
+            userPhoto.setImageURI(Uri.parse(it.replace("\"", "")))
         }
 
         return v
@@ -140,7 +140,7 @@ class UserMenu : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             if(data!!.data != null){
-                PreferencesManager.setPreference((activity as MapsActivity).applicationContext, Constants.USER_PHOTO, data.data.toString() )
+                PreferencesManager.setPreferenceString((activity as MapsActivity).applicationContext, Constants.USER_PHOTO, data.data.toString() )
                 PreferencesManager.setUserPhotoPreferences(data.data!!)
                 userPhoto.setImageURI(Uri.parse(PreferencesManager.getPreferenceString((activity as MapsActivity).applicationContext, Constants.USER_PHOTO)))
             }
