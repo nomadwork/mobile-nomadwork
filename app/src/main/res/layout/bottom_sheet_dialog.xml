@@ -18,7 +18,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="32dp"
-                android:src="@drawable/bola"
+                android:src="@drawable/email"
                 android:tint="#737373" />
 
         <TextView
@@ -42,7 +42,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="32dp"
-                android:src="@drawable/bola"
+                android:src="@drawable/email"
                 android:tint="#737373" />
 
         <TextView
@@ -66,7 +66,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="32dp"
-                android:src="@drawable/bola"
+                android:src="@drawable/email"
                 android:tint="#737373" />
 
         <TextView
