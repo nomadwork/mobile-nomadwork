@@ -85,31 +85,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
-        searchEdit.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextChange(newText: String): Boolean {
-                //if (searchEdit.query.toString() == "") toggleFilterWS(wsFilter)
-                return false
-            }
+        searchWS()
 
-            override fun onQueryTextSubmit(query: String): Boolean {
-                if (searchEdit.query.toString() != "") {
-                    getWSNames()
-                }
-                return false
-            }
-        })
-
-        buttonWSRegister.setOnClickListener {
-            val fragment = NewWorkStationFragment()
-
-            val t = supportFragmentManager.beginTransaction()
-            t.setCustomAnimations(
-                R.anim.enter_from_right,
-                R.anim.exit_to_left
-            )
-            t.replace(R.id.fragments_holder_maps, fragment, "NewWorkStation")
-            t.commit()
-        }
+        buttomWSRegister()
 
         bottomSheetCallback()
 
@@ -176,6 +154,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         this.startActivity(i)
         this.finish()
+    }
+
+    fun searchWS(){
+        searchEdit.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextChange(newText: String): Boolean {
+                //if (searchEdit.query.toString() == "") toggleFilterWS(wsFilter)
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if (searchEdit.query.toString() != "") {
+                    getWSNames()
+                }
+                return false
+            }
+        })
+    }
+
+    fun buttomWSRegister(){
+        buttonWSRegister.setOnClickListener {
+            val fragment = NewWorkStationFragment()
+
+            val t = supportFragmentManager.beginTransaction()
+            t.setCustomAnimations(
+                R.anim.enter_from_right,
+                R.anim.exit_to_left
+            )
+            t.replace(R.id.fragments_holder_maps, fragment, "NewWorkStation")
+            t.commit()
+        }
     }
 
     @SuppressLint("RestrictedApi")
