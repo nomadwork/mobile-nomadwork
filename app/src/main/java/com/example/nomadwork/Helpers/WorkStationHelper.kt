@@ -23,7 +23,7 @@ object WorkStationHelper {
     }
 
     fun getWSByPosition(lat: Double, long: Double): WorkStation? {
-        return listWorkStation?.firstOrNull { it.workStationLocation.lat == lat && it.workStationLocation.long == long }
+        return listWorkStation?.firstOrNull { it.workStationLocation.wsLat == lat && it.workStationLocation.wsLong == long }
     }
 
     fun getAllws(): List<WorkStation> {
