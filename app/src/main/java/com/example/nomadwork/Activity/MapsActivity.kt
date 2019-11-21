@@ -27,9 +27,7 @@ import com.example.nomadwork.Adapters.WSListAdapter
 import com.example.nomadwork.Fragments.LoginFragment
 import com.example.nomadwork.Fragments.NewWorkStationFragment
 import com.example.nomadwork.Fragments.UserMenu
-import com.example.nomadwork.Helpers.AndroidDisposable
-import com.example.nomadwork.Helpers.LocationHelper
-import com.example.nomadwork.Helpers.WorkStationHelper
+import com.example.nomadwork.Helpers.*
 import com.example.nomadwork.R
 import com.example.nomadwork.models.WorkStation
 import com.example.nomadwork.models.WorkStationDetails
@@ -151,8 +149,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             wsFilter.visibility = View.GONE
             false
         } else {
-            logout()
-            true
+            false
         }
         //return super.onKeyDown(keyCode, event)
     }
@@ -177,6 +174,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     fun logout() {
         WorkStationHelper.clearListWS()
         Session.get(null)?.logout(this)
+        PreferencesManager.deletePreference(this, Constants.USER_PHOTO)
         val i = Intent(this, LoginActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         this.startActivity(i)
@@ -668,7 +666,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     logout()
                 }
                 if(result.code == 404){
-                    Toast.makeText(this, result.message!!, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                 }
                 if(result.code == 200) {
                     buildListWS(result.result)
@@ -676,7 +674,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }, { error ->
                 if (error is HttpException) {
-                    Toast.makeText(this, error.message!!, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.ws_not_found), Toast.LENGTH_LONG).show()
                     Log.e(LoginFragment.TAG, error.message!!)
                 } else {
                     Toast.makeText(this, getString(R.string.login_error_contact_admin), Toast.LENGTH_SHORT).show()
