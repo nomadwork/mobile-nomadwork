@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.*
@@ -20,10 +21,12 @@ import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.example.nomadwork.API.Models.BaseResponse
 import com.example.nomadwork.API.NomadWorkAPIService
 import com.example.nomadwork.API.Session
 import com.example.nomadwork.Adapters.WSDetailsImagesAdapter
 import com.example.nomadwork.Adapters.WSListAdapter
+import com.example.nomadwork.Fragments.BannerFragment
 import com.example.nomadwork.Fragments.LoginFragment
 import com.example.nomadwork.Fragments.NewWorkStationFragment
 import com.example.nomadwork.Fragments.UserMenu
@@ -41,6 +44,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import retrofit2.HttpException
+import kotlin.collections.ArrayList
 import com.google.android.material.floatingactionbutton.FloatingActionButton as FloatingActionButton1
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -93,7 +97,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         bottomSheetClickListener()
 
-
+        Handler().postDelayed({
+            showBanner()
+        }, 5000)
 
     }
 
@@ -107,6 +113,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onPause() {
         super.onPause()
         stopLocationUpdates()
+        PreferencesManager.deletePreference(this, Constants.USER_PHOTO)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -132,6 +139,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("RestrictedApi")
     @OnClick(R.id.menuButtom)
     fun openMenu(){
+        if (sheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            expandCloseSheet()
+        }
         val fragment = UserMenu()
 
         buttonWSRegister.visibility = View.GONE
@@ -343,7 +353,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.setOnCameraMoveStartedListener {
 
-            if(LocationHelper.distanceCurrentLocationAndNewLocation(LocationHelper.getUserLocation()!!.latitude,
+            if(WorkStationHelper.checkInitialized()){
+                getMarkersByLocation(
+                    mMap.projection.fromScreenLocation(Point()).latitude,
+                    mMap.projection.fromScreenLocation(Point()).longitude
+                ) {
+                    addMarkersByLocation()
+                }
+                Log.i(TAG, "New Markers")
+            }
+
+            /*if(LocationHelper.distanceCurrentLocationAndNewLocation(LocationHelper.getUserLocation()!!.latitude,
                     LocationHelper.getUserLocation()!!.longitude, mMap.projection.fromScreenLocation(Point()).latitude,
                     mMap.projection.fromScreenLocation(Point()).longitude) > distanceToNewMarkers) {
 
@@ -361,7 +381,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     addMarkersByLocation()
                 }
                 Log.i(TAG, "New Markers")
-            }
+            }*/
         }
     }
 
@@ -516,7 +536,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun showWSDetails(workStationDetails: WorkStationDetails){
+    fun showWSDetails(workStationDetails: WorkStationDetails){
 
         wsDetailsName.text = workStationDetails.workStationName
 
@@ -580,6 +600,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val mark = list[position]
 
             val wsLocation = LatLng(list[position].workStationLocation.wsLat, list[position].workStationLocation.wsLong)
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wsLocation, 18.5f))
 
             val api = NomadWorkAPIService.api()
             val r = api.workStatinDetails.workStationDetails(mark.workStationId)
@@ -593,9 +614,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         logout()
                     }
                     //TODO: refazer marcacao. Nao esta funcionando
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wsLocation, 15.5f))
-                    mMap.addMarker(MarkerOptions().position(wsLocation).title(mark.workStationName).icon(
-                        BitmapDescriptorFactory.fromResource(R.drawable.ws_pin))).showInfoWindow()
+                    getMarkersByLocation(wsLocation.latitude, wsLocation.longitude){
+                        addMarkersByLocation()
+                    }
                     showWSDetails(result.result)
                     toggleFilterWS(wsFilter)
                     searchEdit.setQuery("", false)
@@ -647,5 +668,65 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             })
         disposable.add(subscription)
+    }
+
+    private fun showBanner(){
+        if(WorkStationHelper.checkInitialized()) {
+            val ws = WorkStationHelper.getAllws()[0]
+
+            getWSDetails(ws.workStationId) {
+                val fragment = BannerFragment()
+                fragment.ws = it.result
+                val t = supportFragmentManager.beginTransaction()
+                t.setCustomAnimations(
+                    R.anim.enter_from_left,
+                    R.anim.exit_to_right
+                )
+                t.replace(R.id.fragments_holder_maps, fragment, "Banner")
+                t.commit()
+
+                if (supportFragmentManager.findFragmentByTag("UserMenu") != null) {
+                    menuButton.visibility = View.VISIBLE
+                    false
+                }
+            }
+        }
+    }
+
+    private fun getWSDetails(wsID: Int, callback: (result: BaseResponse<WorkStationDetails>) -> Unit){
+        val api = NomadWorkAPIService.api()
+        val r = api.workStatinDetails.workStationDetails(wsID)
+
+        val subscription = r.observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({ result ->
+                // Invalid access_token. Force logout and login
+                val s = Session.get(null)
+                if (result.code == 401 && s != null) {
+                    logout()
+                }
+                callback(result)
+            }, { error ->
+                if (error is HttpException) {
+                    Toast.makeText(this, error.message!!, Toast.LENGTH_SHORT).show()
+                    Log.e(LoginFragment.TAG, error.message!!)
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.login_error_contact_admin),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e(LoginFragment.TAG, error.message!!)
+                }
+            })
+        disposable.add(subscription)
+    }
+
+    fun moveCamByFragment(wsDetails: WorkStationDetails){
+        val location = LatLng(
+            WorkStationHelper.getWSById(wsDetails.workStationId)!!.workStationLocation.wsLat,
+            WorkStationHelper.getWSById(wsDetails.workStationId)!!.workStationLocation.wsLong
+        )
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16.0f))
     }
 }
