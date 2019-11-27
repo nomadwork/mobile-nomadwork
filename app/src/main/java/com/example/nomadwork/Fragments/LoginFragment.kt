@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Base64
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -92,7 +93,7 @@ class LoginFragment : Fragment() {
     @OnClick(R.id.new_user)
     fun registerNewUser(){
         hideKeyboard()
-        (activity as LoginActivity).doReplaceFragment(LoginStep.NEWUSER)
+        //(activity as LoginActivity).doReplaceFragment(LoginStep.NEWUSER)
     }
 
     @OnClick(R.id.back_login_button)
@@ -162,7 +163,7 @@ class LoginFragment : Fragment() {
     private fun login(email: String,password: String){
         val api = NomadWorkAPIService.api()
 
-        val passwordEncond: String = password //TODO: Base64.encodeToString(password.toByteArray(), Base64.DEFAULT)
+        val passwordEncond: String = password //TODO:Base64.encodeToString(password.toByteArray(), Base64.DEFAULT)
 
         val r = api.userLogin.login(LoginRequest(email, passwordEncond))
 

@@ -78,11 +78,7 @@ class NewUserFragment : Fragment() {
 
         newUserEmailEditText.setOnFocusChangeListener { _, hasFocus ->
             if(!hasFocus){
-                if(newUserEmailEditText.text.isNotEmpty() && !isEmailValid(newUserEmailEditText.text.toString())){
-
-                } else {
-
-                }
+                emailIsValid = newUserEmailEditText.text.isNotEmpty() && !isEmailValid(newUserEmailEditText.text.toString())
             }
         }
 
@@ -179,8 +175,10 @@ class NewUserFragment : Fragment() {
     }
 
     private fun editTextWrongVisual(currentEditText: EditText, drawable: Drawable) {
+        val alert = resources.getDrawable(android.R.drawable.ic_dialog_alert)
+        alert.setTint(resources.getColor(R.color.red))
         currentEditText.setCompoundDrawablesWithIntrinsicBounds(drawable,
-            null, resources.getDrawable(android.R.drawable.ic_dialog_alert), null)
+            null, alert,null)
     }
 
     private fun editTextDefaultVisual(currentEditText: EditText, drawable: Drawable) {
